@@ -19,6 +19,7 @@ request.onerror = function(event){
 }
 
 function saveRecord(record){
+    alert(`You're currently offline, your transaction will be submitted when the connection is re-established.`)
     const transaction = db.transaction(['new_transaction'], 'readwrite');
 
     const transactionObjectStore = transaction.objectStore('new_transaction');
@@ -52,7 +53,7 @@ function uploadTransactions() {
                 const transaction = db.transaction(['new_transaction'], 'readwrite')
                 const transactionObjectStore = transaction.objectStore('new_transaction')
                 transactionObjectStore.clear();
-                alert('All saved transactions have been submitted!')
+                alert('Your offline transactions have been submitted!')
             })
             .catch(err => {
                 console.log(err)
